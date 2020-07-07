@@ -16,13 +16,13 @@ function visualizeMatchesPlayedPerYear(matchesPlayedPerYear) {
   for (let year in matchesPlayedPerYear) {
     seriesData.push([year, matchesPlayedPerYear[year]]);
   }
-
+// visual chart - 1  
   Highcharts.chart("matches-played-per-year", {
     chart: {
       type: "column"
     },
     title: {
-      text: "Matches Played Per Year"
+      text: "1. Total number of matches played each year"
     },
     subtitle: {
       text:
@@ -37,10 +37,22 @@ function visualizeMatchesPlayedPerYear(matchesPlayedPerYear) {
         text: "Matches"
       }
     },
-    series: [
+    series: [  // added to improve visuals
       {
         name: "Years",
-        data: seriesData
+        data: seriesData,
+        dataLabels: {
+          enabled: true,
+          rotation: -90,
+          color: '#FFFFFF',
+          align: 'right',
+          format: '{point.y:.1f}', // one decimal
+          y: 10, // 10 pixels down from the top
+          style: {
+              fontSize: '13px',
+              fontFamily: 'Verdana, sans-serif'
+          }
+      }
       }
     ]
   });

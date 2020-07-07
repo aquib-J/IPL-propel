@@ -1,3 +1,9 @@
 body {
     font-family: sans-serif;
 }
+
+body > div {
+    border: 1px dashed cornflowerblue;
+    margin: 3rem;
+    padding: 2rem;
+}
