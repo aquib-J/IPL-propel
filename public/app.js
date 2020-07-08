@@ -1,5 +1,5 @@
 function fetchAndVisualizeData() {
-  fetch("./data.json")
+  fetch("./data_1.json")
     .then(r => r.json())
     .then(visualizeData);
 }
@@ -46,7 +46,7 @@ function visualizeMatchesPlayedPerYear(matchesPlayedPerYear) {
           rotation: -90,
           color: '#FFFFFF',
           align: 'right',
-          format: '{point.y:.1f}', // one decimal
+          format: '{point.y:f}', // one decimal
           y: 10, // 10 pixels down from the top
           style: {
               fontSize: '13px',
@@ -189,7 +189,7 @@ Highcharts.chart("extra-run-conceeded-by-each-team-2016", {
           rotation: -90,
           color: '#FFFFFF',
           align: 'right',
-          format: '{point.y:.1f}', // one decimal
+          format: '{point.y:f}', // one decimal
           y: 10, // 10 pixels down from the top
           style: {
               fontSize: '13px',
@@ -264,7 +264,7 @@ Highcharts.chart("top-economical-bowlers-2015", {
           rotation: -90,
           color: '#FFFFFF',
           align: 'right',
-          format: '{point.y:.1f}', // one decimal
+          format: '{point.y:f}', // one decimal
           y: 10, // 10 pixels down from the top
           style: {
               fontSize: '13px',
