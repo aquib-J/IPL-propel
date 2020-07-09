@@ -64,12 +64,74 @@ function visualizeMatchesPlayedPerYear(matchesPlayedPerYear) {
 /*
 // Fetch  for visual - 2
 */
+function fetchAndVisualizeData2() {
+  fetch("./data_2.json")
+    .then(r => r.json())
+    .then(visualizeData2);
+}
 
+fetchAndVisualizeData2();
+
+ 
+function visualizeData2(data) {
+  visualizeMatchesWon(data.matchesWonPerYear);
+  return;
+}
 
 
 
 
 // visual chart - 2 && data sizing
+
+function visualizeMatchesWon(yearTeamObj) {
+  let years=Object.keys(yearTeamObj); // for plotting the x axis;
+console.log(years);
+  let Arr=[];  let newArr=[];
+
+  for(let arrPerYear of Object.values(yearTeamObj)){ let result={};
+    for(let team of arrPerYear){
+        if(result[team]){result[team]++}else{result[team]=1;}}  
+        Arr.push(result);
+      } 
+  // Arr returns the array of [{team1..team n:countofteam1...countofteamn},{team1..team n:countofteam1...countofteamn}...] per year aggregation 
+  
+  let teamArr=['Sunrisers Hyderabad',
+  'Royal Challengers Bangalore',
+  'Mumbai Indians',
+  'Rising Pune Supergiant',
+  'Gujarat Lions',
+  'Kolkata Knight Riders',
+  'Kings XI Punjab',
+  'Delhi Daredevils',
+  'Chennai Super Kings',
+  'Rajasthan Royals',
+  'Deccan Chargers',
+  'Kochi Tuskers Kerala',
+  'Pune Warriors',
+  'Rising Pune Supergiants',
+  'Delhi Capitals','noResult'];
+
+
+  for(let team of teamArr){
+    for(let obj of Arr){
+      if(obj[team]){newArr.push({name:team,data:obj[team]})}
+      else{newArr.push({name:team,data:0})};
+    }
+  }
+
+ let dataArray=[]; 
+
+ for(let j=0;j<teamArr.length;j++){
+   let innerarray=[]; 
+ for(let i=0;i<newArr.length;i++){
+    if(newArr[i].name==teamArr[j]){
+      if(typeof newArr[i].data!='undefined'){
+        innerarray.push(newArr[i].data);
+      }
+    }
+    }
+    dataArray.push(innerarray);
+  }
 
 Highcharts.chart("matches-won-by-each-time-alltime", {
   chart: {
@@ -82,20 +144,7 @@ Highcharts.chart("matches-won-by-each-time-alltime", {
       text: 'Source: <a href="https://www.kaggle.com/nowke9/ipldata/data">IPL Dataset</a>'
   },
   xAxis: {
-      categories: [
-          'Jan',
-          'Feb',
-          'Mar',
-          'Apr',
-          'May',
-          'Jun',
-          'Jul',
-          'Aug',
-          'Sep',
-          'Oct',
-          'Nov',
-          'Dec'
-      ],
+      categories: years,
       crosshair: true
   },
   yAxis: {
@@ -119,24 +168,77 @@ Highcharts.chart("matches-won-by-each-time-alltime", {
       }
   },
   series: [{
-      name: 'Tokyo',
-      data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+      name: teamArr[0],
+      data: dataArray[0]
+
+  },
+    {
+      name: teamArr[1],
+      data: dataArray[1]
 
   }, {
-      name: 'New York',
-      data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+    name: teamArr[2],
+    data: dataArray[2]
 
-  }, {
-      name: 'London',
-      data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+},{
+  name: teamArr[3],
+  data: dataArray[3]
 
-  }, {
-      name: 'Berlin',
-      data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+},{
+  name: teamArr[4],
+  data: dataArray[4]
 
-  }]
+},{
+  name: teamArr[5],
+  data: dataArray[5]
+
+},{
+  name: teamArr[6],
+  data: dataArray[6]
+
+},{
+  name: teamArr[7],
+  data: dataArray[7]
+
+},{
+  name: teamArr[8],
+  data: dataArray[8]
+
+},{
+  name: teamArr[9],
+  data: dataArray[9]
+
+},{
+  name: teamArr[10],
+  data: dataArray[10]
+
+},{
+  name: teamArr[11],
+  data: dataArray[11]
+
+},{
+  name: teamArr[12],
+  data: dataArray[12]
+
+},{
+  name: teamArr[12],
+  data: dataArray[12]
+
+},{
+  name: teamArr[13],
+  data: dataArray[13]
+
+},{
+  name: teamArr[14],
+  data: dataArray[14]
+
+},{
+  name: teamArr[15],
+  data: dataArray[15]
+
+}]
 });
-
+}
 /*
 
 // Fetch for visual - 3
