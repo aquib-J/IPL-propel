@@ -1,3 +1,4 @@
+// Fetch && helper functions for visual - 1
 function fetchAndVisualizeData() {
   fetch("./data_1.json")
     .then(r => r.json())
@@ -6,17 +7,20 @@ function fetchAndVisualizeData() {
 
 fetchAndVisualizeData();
 
+ 
 function visualizeData(data) {
   visualizeMatchesPlayedPerYear(data.matchesPlayedPerYear);
   return;
 }
+
+// visual chart - 1 && the helper function for data shaping 
 
 function visualizeMatchesPlayedPerYear(matchesPlayedPerYear) {
   const seriesData = [];
   for (let year in matchesPlayedPerYear) {
     seriesData.push([year, matchesPlayedPerYear[year]]);
   }
-// visual chart - 1  
+ 
   Highcharts.chart("matches-played-per-year", {
     chart: {
       type: "column"
@@ -57,8 +61,15 @@ function visualizeMatchesPlayedPerYear(matchesPlayedPerYear) {
     ]
   });
 }
+/*
+// Fetch  for visual - 2
+*/
 
-// visual chart - 2
+
+
+
+
+// visual chart - 2 && data sizing
 
 Highcharts.chart("matches-won-by-each-time-alltime", {
   chart: {
@@ -126,7 +137,33 @@ Highcharts.chart("matches-won-by-each-time-alltime", {
   }]
 });
 
-// visual chart-3
+/*
+
+// Fetch for visual - 3
+
+*/
+function fetchAndVisualizeData3() {
+  fetch("./data_3.json")
+    .then(r => r.json())
+    .then(visualizeData3);
+}
+
+fetchAndVisualizeData3();
+
+ 
+function visualizeData3(data) {
+  visualizeRunsConceeded(data.runsConceeded2016);
+  return;
+}
+
+
+// visual chart-3 && data sizing ::
+
+function visualizeRunsConceeded(runsConceeded) {
+  const seriesData_3 = [];
+  for (let team in runsConceeded) {
+    seriesData_3.push([team, runsConceeded[team].reduce((x,y)=>(x+y))]);
+  }
 
 Highcharts.chart("extra-run-conceeded-by-each-team-2016", {
   chart: {
@@ -162,28 +199,7 @@ Highcharts.chart("extra-run-conceeded-by-each-team-2016", {
   },
   series: [{
       name: 'Population',
-      data: [
-          ['Shanghai', 24.2],
-          ['Beijing', 20.8],
-          ['Karachi', 14.9],
-          ['Shenzhen', 13.7],
-          ['Guangzhou', 13.1],
-          ['Istanbul', 12.7],
-          ['Mumbai', 12.4],
-          ['Moscow', 12.2],
-          ['São Paulo', 12.0],
-          ['Delhi', 11.7],
-          ['Kinshasa', 11.5],
-          ['Tianjin', 11.2],
-          ['Lahore', 11.1],
-          ['Jakarta', 10.6],
-          ['Dongguan', 10.6],
-          ['Lagos', 10.6],
-          ['Bengaluru', 10.3],
-          ['Seoul', 9.8],
-          ['Foshan', 9.3],
-          ['Tokyo', 9.3]
-      ],
+      data: seriesData_3,
       dataLabels: {
           enabled: true,
           rotation: -90,
@@ -198,6 +214,16 @@ Highcharts.chart("extra-run-conceeded-by-each-team-2016", {
       }
   }]
 });
+
+}
+/*
+
+// Fetch && Helper functions for visual - 4
+
+*/
+
+
+
 
 
 //visual chart-4
