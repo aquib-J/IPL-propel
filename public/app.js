@@ -500,7 +500,7 @@ function storyParser(storyObj) {
       type: 'column'
     },
     title: {
-      text: '5. Story : Matches won per venue per team'
+      text: '<b>5. Story : Matches won per team per venue</b>'
     },
     xAxis: {
       categories: VenueArray // list of venues
@@ -508,7 +508,7 @@ function storyParser(storyObj) {
     yAxis: {
       min: 0,
       title: {
-        text: '<b>Total Matches per team per venue</b>'
+        text: '<b>Total Matches won per team per venue</b>'
       },
       stackLabels: {
         enabled: true,
@@ -540,7 +540,7 @@ function storyParser(storyObj) {
       column: {
         stacking: 'normal',
         dataLabels: {
-          enabled: true
+          // enabled: true
         }
       }
     },
