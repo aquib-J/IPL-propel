@@ -84,7 +84,7 @@ function visualizeData2(data) {
 
 function visualizeMatchesWon(yearTeamObj) {
   let years = Object.keys(yearTeamObj); // for plotting the x axis;
-  console.log(years);
+  // console.log(years);
   let Arr = [];
   let newArr = [];
 
@@ -354,7 +354,7 @@ function visualizeData4(data) {
   return;
 }
 
-// visual chart - 1 && the helper function for data shaping 
+// visual chart - 4 && the helper function for data shaping 
 
 function tenBestEconomyCalculator(bowlerFinalObj) {
   let finalArray = [];
@@ -425,6 +425,177 @@ function tenBestEconomyCalculator(bowlerFinalObj) {
         }
       }
     }]
+  });
+
+}
+
+/* Fetch and helper function for visual 5 */
+
+function fetchAndVisualizeData5() {
+  fetch("./data_5.json")
+    .then(r => r.json())
+    .then(visualizeData5);
+}
+
+fetchAndVisualizeData5();
+
+
+function visualizeData5(data) {
+  storyParser(data.storyJSON);
+  return;
+}
+
+// visual chart - 4 && the helper function for data shaping 
+
+function storyParser(storyObj) {
+
+  let VenueArray = storyObj[0];
+  let arrOfTeamsVenueWise = storyObj[1];
+
+  let teamArr = ['Sunrisers Hyderabad',
+    'Royal Challengers Bangalore',
+    'Mumbai Indians',
+    'Rising Pune Supergiant',
+    'Gujarat Lions',
+    'Kolkata Knight Riders',
+    'Kings XI Punjab',
+    'Delhi Daredevils',
+    'Chennai Super Kings',
+    'Rajasthan Royals',
+    'Deccan Chargers',
+    'Kochi Tuskers Kerala',
+    'Pune Warriors',
+    'Rising Pune Supergiants',
+    'Delhi Capitals'
+  ];
+
+  let finalSeriesArray = [];
+
+  for (let team of teamArr) {
+    let countArr = [];
+    let outerArr = [team, countArr];
+    for (let arr of arrOfTeamsVenueWise) {
+      let count = 0;
+      for (let i = 0; i < arr.length; i++) {
+
+        if (arr[i] == team) {
+          count++;
+        } else {
+          continue;
+        }
+
+      }
+      countArr.push(count);
+
+    }
+    finalSeriesArray.push(outerArr);
+  }
+
+
+
+  // visual chart -5 and the helper function for data shaping
+
+  Highcharts.chart('story', {
+    chart: {
+      type: 'column'
+    },
+    title: {
+      text: '5. Story : Matches won per venue per team'
+    },
+    xAxis: {
+      categories: VenueArray // list of venues
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: '<b>Total Matches per team per venue</b>'
+      },
+      stackLabels: {
+        enabled: true,
+        style: {
+          fontWeight: 'bold',
+          color: ( // theme
+            Highcharts.defaultOptions.title.style &&
+            Highcharts.defaultOptions.title.style.color
+          ) || 'gray'
+        }
+      }
+    },
+    legend: {
+      align: 'right',
+      x: -30,
+      verticalAlign: 'top',
+      y: 25,
+      floating: true,
+      backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || 'white',
+      borderColor: '#CCC',
+      borderWidth: 1,
+      shadow: false
+    },
+    tooltip: {
+      headerFormat: '<b>{point.x}</b><br/>',
+      pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+    },
+    plotOptions: {
+      column: {
+        stacking: 'normal',
+        dataLabels: {
+          enabled: true
+        }
+      }
+    },
+    series: [{
+        name: finalSeriesArray[0][0],
+        data: finalSeriesArray[0][1] // name : team : data : [array of wins according to list of venues]
+      }, {
+        name: finalSeriesArray[1][0],
+        data: finalSeriesArray[1][1]
+      },
+      {
+        name: finalSeriesArray[2][0],
+        data: finalSeriesArray[2][1]
+      }, {
+        name: finalSeriesArray[3][0],
+        data: finalSeriesArray[3][1]
+      }, {
+        name: finalSeriesArray[4][0],
+        data: finalSeriesArray[4][1]
+      },
+      {
+        name: finalSeriesArray[5][0],
+        data: finalSeriesArray[5][1]
+      }, {
+        name: finalSeriesArray[6][0],
+        data: finalSeriesArray[6][1]
+      }, {
+        name: finalSeriesArray[7][0],
+        data: finalSeriesArray[7][1]
+      },
+      {
+        name: finalSeriesArray[8][0],
+        data: finalSeriesArray[8][1]
+      }, {
+        name: finalSeriesArray[9][0],
+        data: finalSeriesArray[9][1]
+      }, {
+        name: finalSeriesArray[10][0],
+        data: finalSeriesArray[10][1]
+      },
+      {
+        name: finalSeriesArray[11][0],
+        data: finalSeriesArray[11][1]
+      }, {
+        name: finalSeriesArray[12][0],
+        data: finalSeriesArray[12][1]
+      }, {
+        name: finalSeriesArray[13][0],
+        data: finalSeriesArray[13][1]
+      },
+      {
+        name: finalSeriesArray[14][0],
+        data: finalSeriesArray[14][1]
+      }
+    ]
   });
 
 }
