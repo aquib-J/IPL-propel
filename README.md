@@ -1,3 +1,8 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/9dd26d5a-9f31-4cb6-b1fb-7f84cd782f51/deploy-status)](https://app.netlify.com/sites/vigilant-saha-8901b0/deploys)
+
+### https://vigilant-saha-8901b0.netlify.app/
+
+
 # IPL dataset visualization
 
 ## Install
